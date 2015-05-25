@@ -1,6 +1,7 @@
 {
     "name": "metaviewport-parser",
     "version": "0.0.1",
+    "description": "Parser for the content attribute of the meta viewport",
     "license": "MIT",
     "dependencies": {
     },
