@@ -1,3 +1,5 @@
+[![devDependency Status](https://david-dm.org/dontcallmedom/metaviewport-parser/dev-status.svg)](https://david-dm.org/dontcallmedom/metaviewport-parser#info=devDependencies)
+
 # Meta viewport parser
 
 This library uses the algorithm described in the [W3C CSS Device Adaption specification](http://dev.w3.org/csswg/css-device-adapt/#viewport-meta) to parse and interpret the content of a meta viewport declaration.
