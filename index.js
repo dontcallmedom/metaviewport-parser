@@ -271,7 +271,7 @@ exports.parseMetaViewPortContent = function (S) {
     return parsedContent;
 };
 
-var propertyNames = ["width", "height", "initial-scale", "minimum-scale", "maximum-scale", "user-scalable"];
+var propertyNames = ["width", "height", "initial-scale", "minimum-scale", "maximum-scale", "user-scalable", "shrink-to-fit"];
 
 function parseProperty(parsedContent, S, i) {
     var start = i;
@@ -328,5 +328,6 @@ exports.expectedValues = {
     "initial-scale": ["a positive number"],
     "minimum-scale": ["a positive number"],
     "maximum-scale": ["a positive number"],
-    "user-scalable": ["yes", "no", "0", "1"]
+    "user-scalable": ["yes", "no", "0", "1"],
+    "shrink-to-fit": ["yes", "no"]
 };
