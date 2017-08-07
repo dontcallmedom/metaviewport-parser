@@ -28,6 +28,12 @@ var contentAttributeTests = [
     {desc: "report separately unknown property names",
      inp:"widht=400px; initial-scale=1.5",
      out: buildParsedContent({"initial-scale":1.5}, {"widht": "400px"})},
+    {desc: "handle safari shrink-to-fit",
+      inp:"initial-scale=1.5; shrink-to-fit=no",
+      out: buildParsedContent({"initial-scale":1.5, "shrink-to-fit": "no"})},
+    {desc: "handle bad safari shrink-to-fit value",
+    inp:"shrink-to-fit=foo",
+    out: buildParsedContent({"shrink-to-fit":null},null, {"shrink-to-fit": "foo"})},
     {desc: "handle whitespace correctly",
      inp:"        width=400\
  \r, initial-scale=2",
