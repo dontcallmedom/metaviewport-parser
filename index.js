@@ -16,6 +16,7 @@ exports.getRenderingDataFromViewport = function (viewportProperties, uaDeviceWid
     var initialWidth = uaDeviceWidth;
     var initialHeight = uaDeviceHeight;
     var userZoom = "zoom";
+
     if (viewportProperties["maximum-scale"] !== undefined) {
         maxZoom = translateZoomProperty(viewportProperties["maximum-scale"]);
     }
@@ -271,7 +272,7 @@ exports.parseMetaViewPortContent = function (S) {
     return parsedContent;
 };
 
-var propertyNames = ["width", "height", "initial-scale", "minimum-scale", "maximum-scale", "user-scalable", "shrink-to-fit"];
+var propertyNames = ["width", "height", "initial-scale", "minimum-scale", "maximum-scale", "user-scalable", "shrink-to-fit", "viewport-fit"];
 
 function parseProperty(parsedContent, S, i) {
     var start = i;
@@ -311,10 +312,16 @@ function setProperty(parsedContent, name, value) {
             return;
         }
         var string = value.toLowerCase();
-        if (string === "yes" || string === "no" || string === "device-width" || string === "device-height") {
+
+        if (string === "yes" || string === "no" || string === "device-width" || string === "device-height" ||
+
+           // https://webkit.org/blog/7929/designing-websites-for-iphone-x/
+           (name.toLowerCase() === 'viewport-fit' && (string === 'auto' || string === 'cover'))) {
+
             parsedContent.validProperties[name] = string;
             return;
         }
+
         parsedContent.validProperties[name] = null;
         parsedContent.invalidValues[name] = value;
     } else {
@@ -329,5 +336,6 @@ exports.expectedValues = {
     "minimum-scale": ["a positive number"],
     "maximum-scale": ["a positive number"],
     "user-scalable": ["yes", "no", "0", "1"],
-    "shrink-to-fit": ["yes", "no"]
+    "shrink-to-fit": ["yes", "no"],
+    "viewport-fit": ["auto", "cover"]
 };
