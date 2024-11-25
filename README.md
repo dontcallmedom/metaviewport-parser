@@ -2,11 +2,11 @@
 
 # Meta viewport parser
 
-This library uses the algorithm described in the [W3C CSS Device Adaption specification](http://dev.w3.org/csswg/css-device-adapt/#viewport-meta) to parse and interpret the content of a meta viewport declaration.
+This library uses the algorithm described in the [CSS Viewport Module](https://drafts.csswg.org/css-viewport/#viewport-meta) to parse and interpret the content of a meta viewport declaration.
 
 ## Attribute parser
 
-The function parseMetaViewPortContent() takes the content of the `content` attribute of a meta viewport declaration, and parses it into an object separating valid properties (key `validProperties`), unknown properties (key `unknownProperties`), and known properties with invalid values (key `invalidValues`).
+The function `parseMetaViewPortContent()` takes the content of the `content` attribute of a meta viewport declaration, and parses it into an object separating valid properties (key `validProperties`), unknown properties (key `unknownProperties`), and known properties with invalid values (key `invalidValues`).
 
 ```html
 <meta name=viewport content="width=device-width">
@@ -15,7 +15,7 @@ The function parseMetaViewPortContent() takes the content of the `content` attri
 ```javascript
 // contentAttr contains "width=device-width";
 
-var metaparser = require('metaviewport-parser');
+const metaparser = require('metaviewport-parser');
 console.log(metaparser.parseMetaViewPortContent(contentAttr));
 // { validProperties: {width: 'device-width'},
 //   unknownProperties: {},
@@ -28,7 +28,7 @@ console.log(metaparser.parseMetaViewPortContent(contentAttr));
 ```
 
 ```javascript
-var metaparser = require('metaviewport-parser');
+const metaparser = require('metaviewport-parser');
 console.log(metaparser.parseMetaViewPortContent(contentAttr));
 // { validProperties: {'initial-scale': 1},
 //   unknownProperties: {},
@@ -42,7 +42,7 @@ console.log(metaparser.parseMetaViewPortContent(contentAttr));
 ```
 
 ```javascript
-var metaparser = require('metaviewport-parser');
+const metaparser = require('metaviewport-parser');
 console.log(metaparser.parseMetaViewPortContent(contentAttr));
 // { validProperties: {'initial-scale': 1},
 //   unknownProperties: {},
@@ -65,9 +65,9 @@ The `zoom` key is set to null when the value is interpreted as "auto".
 ```javascript
 // contentAttr contains "width=device-width";
 
-var metaparser = require('metaviewport-parser');
-var viewport = metaparser.parseMetaViewPortContent(contentAttr);
-var renderingData = metaparser.getRenderingDataFromViewport(viewport.validProperties);
+const metaparser = require('metaviewport-parser');
+const viewport = metaparser.parseMetaViewPortContent(contentAttr);
+const renderingData = metaparser.getRenderingDataFromViewport(viewport.validProperties);
 console.log(renderingData);
 // { zoom: null, width: 320, height: 480, userZoom: "zoom" }
 ```
@@ -77,9 +77,9 @@ console.log(renderingData);
 ```
 
 ```javascript
-var metaparser = require('metaviewport-parser');
-var viewport = metaparser.parseMetaViewPortContent(contentAttr);
-var renderingData = metaparser.getRenderingDataFromViewport(viewport.validProperties);
+const metaparser = require('metaviewport-parser');
+const viewport = metaparser.parseMetaViewPortContent(contentAttr);
+const renderingData = metaparser.getRenderingDataFromViewport(viewport.validProperties);
 console.log(renderingData);
 // { zoom: 1, width: 320, height: 480, userZoom: "zoom" }
 ```
@@ -89,9 +89,9 @@ console.log(renderingData);
 ```
 
 ```javascript
-var metaparser = require('metaviewport-parser');
-var viewport = metaparser.parseMetaViewPortContent(contentAttr);
-var renderingData = metaparser.getRenderingDataFromViewport(viewport.validProperties);
+const metaparser = require('metaviewport-parser');
+const viewport = metaparser.parseMetaViewPortContent(contentAttr);
+const renderingData = metaparser.getRenderingDataFromViewport(viewport.validProperties);
 console.log(renderingData);
 // { zoom: 2, width: 213, height: 320, userZoom: "zoom" }
 ```
@@ -101,9 +101,9 @@ console.log(renderingData);
 ```
 
 ```javascript
-var metaparser = require('metaviewport-parser');
-var viewport = metaparser.parseMetaViewPortContent(contentAttr);
-var renderingData = metaparser.getRenderingDataFromViewport(viewport.validProperties);
+const metaparser = require('metaviewport-parser');
+const viewport = metaparser.parseMetaViewPortContent(contentAttr);
+const renderingData = metaparser.getRenderingDataFromViewport(viewport.validProperties);
 console.log(renderingData);
 // { zoom: 1, width: 320, height: 480, userZoom: "fixed" }
 ```
